@@ -1,0 +1,77 @@
+.technology-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+.technology-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.technology-card h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.technology-card p {
+  margin: 0 0 15px 0;
+  color: #666;
+  line-height: 1.5;
+}
+
+.status-indicator {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.status-text {
+  font-weight: bold;
+}
+
+/* Стили для разных статусов */
+.status-not-started {
+  border-left-color: #ff6b6b;
+  background-color: #fff5f5;
+}
+
+.status-in-progress {
+  border-left-color: #4ecdc4;
+  background-color: #f0fffe;
+}
+
+.status-completed {
+  border-left-color: #45b7d1;
+  background-color: #f0f9ff;
+}
+
+.status-not-started .status-text {
+  color: #ff6b6b;
+}
+
+.status-in-progress .status-text {
+  color: #4ecdc4;
+}
+
+.status-completed .status-text {
+  color: #45b7d1;
+}
+.click-hint {
+  font-size: 0.8em;
+  color: #999;
+  margin-left: 10px;
+  font-style: italic;
+}
+
+.technology-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.technology-card:active {
+  transform: scale(0.98);
+}
