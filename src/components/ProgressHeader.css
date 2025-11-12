@@ -1,40 +1,62 @@
 .progress-header {
   background: white;
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 12px;
+  padding: 24px;
   margin: 20px 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
 }
 
 .progress-header h2 {
   margin: 0 0 20px 0;
   color: #333;
   text-align: center;
+  font-size: 1.5em;
 }
 
-.progress-stats {
+.progress-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.progress-visual {
+  margin-bottom: 10px;
+}
+
+.progress-stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
 }
 
-.stat-item {
+.stat-card {
   text-align: center;
-  padding: 15px;
+  padding: 16px 12px;
   border-radius: 8px;
-  background-color: #f8f9fa;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .stat-number {
   display: block;
-  font-size: 2em;
+  font-size: 1.8em;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
+}
+
+.stat-number.total {
+  color: #495057;
 }
 
 .stat-number.completed {
-  color: #45b7d1;
+  color: #51cf66;
 }
 
 .stat-number.in-progress {
@@ -45,34 +67,32 @@
   color: #ff6b6b;
 }
 
+.stat-number.notes {
+  color: #cc5de8;
+}
+
 .stat-label {
-  font-size: 0.9em;
+  font-size: 0.85em;
   color: #666;
+  font-weight: 500;
 }
 
-.progress-bar-container {
-  margin-top: 20px;
-}
-
-.progress-bar {
-  width: 100%;
-  height: 20px;
-  background-color: #e9ecef;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 10px;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #4ecdc4, #45b7d1);
-  border-radius: 10px;
-  transition: width 0.5s ease;
-}
-
-.progress-text {
-  display: block;
-  text-align: center;
-  font-weight: bold;
-  color: #333;
+/* 🔥 Адаптивность */
+@media (max-width: 768px) {
+  .progress-header {
+    padding: 16px;
+  }
+  
+  .progress-stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+  }
+  
+  .stat-card {
+    padding: 12px 8px;
+  }
+  
+  .stat-number {
+    font-size: 1.5em;
+  }
 }
