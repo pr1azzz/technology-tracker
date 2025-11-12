@@ -6,6 +6,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-left: 4px solid #ccc;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .technology-card:hover {
@@ -13,24 +14,49 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.technology-card h3 {
-  margin: 0 0 10px 0;
-  color: #333;
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
 }
 
-.technology-card p {
+.card-header h3 {
+  margin: 0;
+  color: #333;
+  flex: 1;
+}
+
+.status-badge {
+  font-size: 0.8em;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.card-description {
   margin: 0 0 15px 0;
   color: #666;
   line-height: 1.5;
-}
-
-.status-indicator {
   font-size: 0.9em;
-  color: #888;
 }
 
-.status-text {
-  font-weight: bold;
+.card-footer {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.click-hint {
+  font-size: 0.8em;
+  color: #999;
+  font-style: italic;
+}
+
+/* 🔥 Убираем курсор-указатель для секции заметок */
+.notes-section {
+  cursor: default;
 }
 
 /* Стили для разных статусов */
@@ -49,29 +75,17 @@
   background-color: #f0f9ff;
 }
 
-.status-not-started .status-text {
-  color: #ff6b6b;
+.status-not-started .status-badge {
+  background: #ff6b6b;
+  color: white;
 }
 
-.status-in-progress .status-text {
-  color: #4ecdc4;
+.status-in-progress .status-badge {
+  background: #4ecdc4;
+  color: white;
 }
 
-.status-completed .status-text {
-  color: #45b7d1;
-}
-.click-hint {
-  font-size: 0.8em;
-  color: #999;
-  margin-left: 10px;
-  font-style: italic;
-}
-
-.technology-card {
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.technology-card:active {
-  transform: scale(0.98);
+.status-completed .status-badge {
+  background: #45b7d1;
+  color: white;
 }

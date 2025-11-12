@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import './TechnologyCard.css';
+import TechnologyNotes from './TechnologyNotes';
 
-function TechnologyCard({ id, title, description, status, onStatusChange }) {
-  const handleClick = () => {
+function TechnologyCard({ id, title, description, status, notes, onStatusChange, onNotesChange }) {
+  const handleCardClick = () => {
     const statusOrder = ['not-started', 'in-progress', 'completed'];
     const currentIndex = statusOrder.indexOf(status);
     const nextIndex = (currentIndex + 1) % statusOrder.length;
@@ -11,17 +11,35 @@ function TechnologyCard({ id, title, description, status, onStatusChange }) {
     onStatusChange(id, nextStatus);
   };
 
+  // 🔥 Останавливаем всплытие события при клике на заметки
+  const handleNotesClick = (e) => {
+    e.stopPropagation(); // Останавливаем всплытие клика к карточке
+  };
+
   return (
     <div 
       id={`tech-${id}`}
       className={`technology-card status-${status}`}
-      onClick={handleClick}
+      onClick={handleCardClick}
     >
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <div className="status-indicator">
-        Статус: <span className="status-text">{getStatusText(status)}</span>
-        <span className="click-hint">(кликните для изменения)</span>
+      <div className="card-header">
+        <h3>{title}</h3>
+        <span className="status-badge">{getStatusText(status)}</span>
+      </div>
+      
+      <p className="card-description">{description}</p>
+      
+      {/* 🔥 Добавляем обработчик клика для остановки всплытия */}
+      <div onClick={handleNotesClick}>
+        <TechnologyNotes 
+          notes={notes}
+          onNotesChange={onNotesChange}
+          techId={id}
+        />
+      </div>
+      
+      <div className="card-footer">
+        <span className="click-hint">🖱️ Кликните на карточку для изменения статуса</span>
       </div>
     </div>
   );
@@ -29,9 +47,9 @@ function TechnologyCard({ id, title, description, status, onStatusChange }) {
 
 function getStatusText(status) {
   const statusMap = {
-    'not-started': 'Не начато',
-    'in-progress': 'В процессе',
-    'completed': 'Завершено'
+    'not-started': '⏳ Не начато',
+    'in-progress': '🔄 В процессе', 
+    'completed': '✅ Завершено'
   };
   return statusMap[status] || status;
 }
