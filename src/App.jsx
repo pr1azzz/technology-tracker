@@ -4,6 +4,7 @@ import './App.css';
 import Navigation from './components/Navigation.jsx';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
+import { TechnologiesProvider } from './hooks/useTechnologies.jsx';
 import Home from './pages/Home.jsx';
 import TechnologyList from './pages/TechnologyList.jsx';
 import TechnologyDetail from './pages/TechnologyDetail.jsx';
@@ -11,6 +12,7 @@ import AddTechnology from './pages/AddTechnology.jsx';
 import Statistics from './pages/Statistics.jsx';
 import Settings from './pages/Settings.jsx';
 import Login from './pages/Login.jsx';
+import ApiTechnologies from './pages/ApiTechnologies.jsx';
 
 function App() {
   const location = useLocation();
@@ -36,41 +38,44 @@ function App() {
 
   return (
     <AuthProvider>
-      <div className="App">
-        <Navigation />
+      <TechnologiesProvider>
+        <div className="App">
+          <Navigation />
+          
+          {reloadNoticePath && (
+            <div className="reload-notice">
+              <p>
+                Страница <strong>{reloadNoticePath}</strong> обновлена напрямую. Для корректной работы SPA
+                перейдите на главную и используйте встроенную навигацию.
+              </p>
+              <Link to="/" className="btn btn-primary">
+                ← На главную
+              </Link>
+            </div>
+          )}
 
-        {reloadNoticePath && (
-          <div className="reload-notice">
-            <p>
-              Страница <strong>{reloadNoticePath}</strong> обновлена напрямую. Для корректной работы SPA
-              перейдите на главную и используйте встроенную навигацию.
-            </p>
-            <Link to="/" className="btn btn-primary">
-              ← На главную
-            </Link>
-          </div>
-        )}
-
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/technologies" element={<TechnologyList />} />
-            <Route path="/technology/:id" element={<TechnologyDetail />} />
-            <Route path="/add-technology" element={<AddTechnology />} />
-            <Route path="/statistics" element={<Statistics />} />
-            <Route 
-              path="/settings" 
-              element={
-                <ProtectedRoute>
-                  <Settings />
-                </ProtectedRoute>
-              } 
-            />
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
-        </main>
-      </div>
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/technologies" element={<TechnologyList />} />
+              <Route path="/api-technologies" element={<ApiTechnologies />} />
+              <Route path="/technology/:id" element={<TechnologyDetail />} />
+              <Route path="/add-technology" element={<AddTechnology />} />
+              <Route path="/statistics" element={<Statistics />} />
+              <Route 
+                path="/settings" 
+                element={
+                  <ProtectedRoute>
+                    <Settings />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route path="/login" element={<Login />} />
+              <Route path="*" element={<Home />} />
+            </Routes>
+          </main>
+        </div>
+      </TechnologiesProvider>
     </AuthProvider>
   );
 }

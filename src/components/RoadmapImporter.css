@@ -1,0 +1,83 @@
+.roadmap-importer {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  border: 1px solid #f1f3f5;
+}
+
+.roadmap-importer h3 {
+  margin: 0 0 15px 0;
+  color: #1f1f3a;
+}
+
+.import-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+
+.import-input-wrapper span {
+  font-size: 0.9em;
+  color: #6c757d;
+}
+
+.import-input-wrapper input {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+  font-size: 0.95em;
+  transition: border-color 0.2s ease;
+}
+
+.import-input-wrapper input:focus {
+  outline: none;
+  border-color: #4ecdc4;
+}
+
+.import-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.import-button {
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  background: #4ecdc4;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.import-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.import-button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(78, 205, 196, 0.3);
+}
+
+.import-message {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.import-message.error {
+  background: #fff5f5;
+  color: #c92a2a;
+  border-color: #ffc9c9;
+}
+
+.import-message.success {
+  background: #ebfbee;
+  color: #2f9e44;
+  border-color: #b2f2bb;
+}
+

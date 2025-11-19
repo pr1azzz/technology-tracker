@@ -1,12 +1,17 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useTechnologies } from '../hooks/useTechnologies';
+import { useTechnologies } from '../hooks/useTechnologies.jsx';
 import './TechnologyDetail.css';
 
 function TechnologyDetail() {
   const { id } = useParams();
   const { technologies, updateTechnologyStatus, updateTechnologyNotes } = useTechnologies();
   const [technology, setTechnology] = useState(null);
+  const [resourceState, setResourceState] = useState({
+    loading: false,
+    error: '',
+    data: null
+  });
 
   // 🔥 Синхронизируем технологию с состоянием и localStorage
   useEffect(() => {
@@ -74,6 +79,39 @@ function TechnologyDetail() {
     const currentIndex = statusOrder.indexOf(technology.status);
     const nextIndex = (currentIndex + 1) % statusOrder.length;
     return statusOrder[nextIndex];
+  };
+
+  const loadExtraResources = async () => {
+    if (!technology.externalId) {
+      setResourceState({
+        loading: false,
+        error: 'Для этой технологии нет связанного API',
+        data: null
+      });
+      return;
+    }
+
+    try {
+      setResourceState({ loading: true, error: '', data: null });
+      const response = await fetch(`https://dummyjson.com/products/${technology.externalId}`);
+      if (!response.ok) throw new Error('Не удалось загрузить ресурсы');
+      const data = await response.json();
+      setResourceState({
+        loading: false,
+        error: '',
+        data: {
+          brand: data.brand,
+          price: data.price,
+          rating: data.rating,
+          stock: data.stock,
+          images: data.images?.slice(0, 4) || [],
+          description: data.description
+        }
+      });
+    } catch (err) {
+      if (err.name === 'AbortError') return;
+      setResourceState({ loading: false, error: err.message, data: null });
+    }
   };
 
   return (
@@ -180,6 +218,41 @@ function TechnologyDetail() {
                 <span>Системой</span>
               </div>
             </div>
+          </div>
+
+          {/* 🔗 Дополнительные ресурсы */}
+          <div className="resources-section">
+            <h2>🔗 Дополнительные ресурсы</h2>
+            {!technology.externalId ? (
+              <p className="resources-hint">Для этой технологии нет внешнего источника.</p>
+            ) : (
+              <>
+                <button
+                  className="btn btn-primary"
+                  onClick={loadExtraResources}
+                  disabled={resourceState.loading}
+                >
+                  {resourceState.loading ? 'Загрузка...' : 'Загрузить данные из API'}
+                </button>
+                {resourceState.error && (
+                  <p className="resources-error">{resourceState.error}</p>
+                )}
+                {resourceState.data && (
+                  <div className="resources-card">
+                    <p><strong>Бренд:</strong> {resourceState.data.brand}</p>
+                    <p><strong>Цена:</strong> ${resourceState.data.price}</p>
+                    <p><strong>Рейтинг:</strong> {resourceState.data.rating}</p>
+                    <p><strong>Наличие:</strong> {resourceState.data.stock} шт.</p>
+                    <p>{resourceState.data.description}</p>
+                    <div className="resources-images">
+                      {resourceState.data.images.map((img, idx) => (
+                        <img key={idx} src={img} alt={`${technology.title}-${idx}`} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
 

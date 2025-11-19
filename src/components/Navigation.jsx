@@ -33,6 +33,14 @@ function Navigation() {
         </li>
         <li>
           <Link 
+            to="/api-technologies" 
+            className={location.pathname === '/api-technologies' ? 'active' : ''}
+          >
+            🌐 API технологии
+          </Link>
+        </li>
+        <li>
+          <Link 
             to="/add-technology" 
             className={location.pathname === '/add-technology' ? 'active' : ''}
           >

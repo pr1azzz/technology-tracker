@@ -1,10 +1,25 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { useTechnologies } from '../hooks/useTechnologies';
+import { useTechnologies } from '../hooks/useTechnologies.jsx';
+import RoadmapImporter from '../components/RoadmapImporter.jsx';
+import TechnologySearch from '../components/TechnologySearch.jsx';
 import './TechnologyList.css';
 
 function TechnologyList() {
-  const { technologies } = useTechnologies();
+  const { technologies, setTechnologies } = useTechnologies();
+
+  const handleLocalImport = async (technology) => {
+    setTechnologies(prev => {
+      const exists = prev.some(item => item.id === technology.id);
+      const generatedId = exists || !technology.id ? Date.now() + Math.random() : technology.id;
+      const normalizedTech = {
+        ...technology,
+        id: generatedId,
+        status: technology.status || 'not-started',
+        notes: technology.notes || ''
+      };
+      return [...prev, normalizedTech];
+    });
+  };
 
   // 🔥 Статусы на русском
   const getStatusText = (status) => {
@@ -36,6 +51,16 @@ function TechnologyList() {
         <Link to="/add-technology" className="btn btn-primary">
           ➕ Добавить технологию
         </Link>
+      </div>
+
+      {/* 🔥 Импорт дорожной карты */}
+      <div className="roadmap-import-section">
+        <RoadmapImporter onAddTechnology={handleLocalImport} />
+      </div>
+
+      {/* 🔎 Поиск технологий */}
+      <div className="technology-search-section">
+        <TechnologySearch onAdd={handleLocalImport} />
       </div>
 
       {/* 🔥 Статистика */}

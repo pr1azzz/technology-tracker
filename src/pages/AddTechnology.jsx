@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useTechnologies } from '../hooks/useTechnologies';
+import { useTechnologies } from '../hooks/useTechnologies.jsx';
 import './AddTechnology.css';
 
 function AddTechnology() {

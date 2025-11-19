@@ -80,6 +80,9 @@
 .meta-section {
   margin-bottom: 40px;
 }
+.resources-section {
+  margin-bottom: 40px;
+}
 
 .info-section:last-child,
 .status-section:last-child,
@@ -192,6 +195,39 @@
 .status-text.completed {
   color: #51cf66;
   font-weight: 600;
+}
+
+.resources-hint {
+  margin-top: 10px;
+  color: #666;
+}
+
+.resources-error {
+  margin-top: 10px;
+  color: #c92a2a;
+}
+
+.resources-card {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+.resources-images {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.resources-images img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
 }
 
 /* 🔥 Действия внизу */

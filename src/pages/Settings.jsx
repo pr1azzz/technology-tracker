@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useTechnologies } from '../hooks/useTechnologies';
+import { useTechnologies } from '../hooks/useTechnologies.jsx';
 import { useAuth } from '../context/AuthContext';
 import './Settings.css';
 

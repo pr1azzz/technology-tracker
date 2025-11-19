@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useMemo } from 'react';
-import { useTechnologies } from '../hooks/useTechnologies';
+import { useTechnologies } from '../hooks/useTechnologies.jsx';
 import './Statistics.css';
 
 function Statistics() {

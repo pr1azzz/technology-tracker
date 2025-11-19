@@ -1,3 +1,4 @@
+import { createContext, useContext } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
 // 🔥 Начальные данные технологий
@@ -46,7 +47,9 @@ const initialTechnologies = [
   }
 ];
 
-export function useTechnologies() {
+const TechnologiesContext = createContext(null);
+
+function useProvideTechnologies() {
   const [technologies, setTechnologies] = useLocalStorage('techTrackerData', initialTechnologies);
 
   // 🔥 Изменение статуса технологии
@@ -131,4 +134,21 @@ export function useTechnologies() {
     exportData,
     resetToInitial
   };
+}
+
+export function TechnologiesProvider({ children }) {
+  const value = useProvideTechnologies();
+  return (
+    <TechnologiesContext.Provider value={value}>
+      {children}
+    </TechnologiesContext.Provider>
+  );
+}
+
+export function useTechnologies() {
+  const context = useContext(TechnologiesContext);
+  if (!context) {
+    throw new Error('useTechnologies должен использоваться внутри TechnologiesProvider');
+  }
+  return context;
 }
