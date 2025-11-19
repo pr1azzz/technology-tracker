@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { DEFAULT_API_URL, mapProductToTechnology } from '../hooks/useTechnologiesApi';
+import mockTechnologies from '../data/mockTechnologies';
 import './RoadmapImporter.css';
 
 function RoadmapImporter({
@@ -46,7 +47,16 @@ function RoadmapImporter({
 
       setStatusMessage(`Импортировано ${added} технологий из ${roadmapUrl}`);
     } catch (err) {
-      setStatusMessage(`Ошибка импорта: ${err.message}`);
+      if (err.name === 'AbortError') return;
+      try {
+        const fallbackCount = mockTechnologies.length;
+        for (const tech of mockTechnologies) {
+          await onAddTechnology({ ...tech, id: Date.now() + Math.random() });
+        }
+        setStatusMessage(`API недоступно, импортировано ${fallbackCount} технологий из локального списка`);
+      } catch (fallbackError) {
+        setStatusMessage(`Ошибка импорта: ${err.message}`);
+      }
     } finally {
       setImporting(false);
     }

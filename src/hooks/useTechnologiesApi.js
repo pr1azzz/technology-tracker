@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import mockTechnologies from '../data/mockTechnologies';
 
 export const DEFAULT_API_URL =
   'https://dummyjson.com/products?limit=12&select=id,title,description,category,rating,thumbnail,images,brand';
@@ -39,10 +40,13 @@ function useTechnologiesApi() {
       const products = Array.isArray(data.products) ? data.products : [];
       const mapped = products.map(mapProductToTechnology);
 
-      setTechnologies(mapped);
+      setTechnologies(mapped.length ? mapped : mockTechnologies);
     } catch (err) {
       console.error('Ошибка загрузки:', err);
       setError(err.message || 'Не удалось загрузить технологии');
+      if (!technologies.length) {
+        setTechnologies(mockTechnologies);
+      }
     } finally {
       setLoading(false);
     }

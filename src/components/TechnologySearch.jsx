@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { mapProductToTechnology } from '../hooks/useTechnologiesApi';
+import mockTechnologies from '../data/mockTechnologies';
 import './TechnologySearch.css';
 
 const SEARCH_URL = 'https://dummyjson.com/products/search?limit=8&select=id,title,description,category,rating,thumbnail,images,brand';
@@ -59,7 +60,11 @@ function TechnologySearch({ onAdd }) {
         })
         .catch(err => {
           if (err.name !== 'AbortError') {
-            setError(err.message);
+            setError('API недоступно, показаны результаты из локального списка');
+            const fallback = mockTechnologies.filter(item =>
+              item.title.toLowerCase().includes(trimmedQuery.toLowerCase())
+            );
+            setResults(fallback);
           }
         })
         .finally(() => setLoading(false));

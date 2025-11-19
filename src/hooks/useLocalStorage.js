@@ -15,10 +15,12 @@ export function useLocalStorage(key, initialValue) {
   // 🔥 Обновляем localStorage при изменении значения
   const setValue = (value) => {
     try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-      console.log(`💾 Сохранено в localStorage (${key}):`, valueToStore);
+      setStoredValue(prevValue => {
+        const valueToStore = value instanceof Function ? value(prevValue) : value;
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+        console.log(`💾 Сохранено в localStorage (${key}):`, valueToStore);
+        return valueToStore;
+      });
     } catch (error) {
       console.error(`❌ Ошибка записи в localStorage ключа "${key}":`, error);
     }

@@ -12,7 +12,6 @@ import AddTechnology from './pages/AddTechnology.jsx';
 import Statistics from './pages/Statistics.jsx';
 import Settings from './pages/Settings.jsx';
 import Login from './pages/Login.jsx';
-import ApiTechnologies from './pages/ApiTechnologies.jsx';
 
 function App() {
   const location = useLocation();
@@ -58,7 +57,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/technologies" element={<TechnologyList />} />
-              <Route path="/api-technologies" element={<ApiTechnologies />} />
               <Route path="/technology/:id" element={<TechnologyDetail />} />
               <Route path="/add-technology" element={<AddTechnology />} />
               <Route path="/statistics" element={<Statistics />} />
