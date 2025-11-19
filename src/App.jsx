@@ -1,118 +1,77 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import './App.css';
-import TechnologyCard from './components/TechnologyCard';
-import ProgressHeader from './components/ProgressHeader';
-import QuickActions from './components/QuickActions';
-import WindowSizeTracker from './components/WindowSizeTracker';
-import UserProfile from './components/UserProfile';
-import ContactForm from './components/ContactForm';
-import { useTechnologies } from './hooks/useTechnologies';
+import Navigation from './components/Navigation.jsx';
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './context/AuthContext';
+import Home from './pages/Home.jsx';
+import TechnologyList from './pages/TechnologyList.jsx';
+import TechnologyDetail from './pages/TechnologyDetail.jsx';
+import AddTechnology from './pages/AddTechnology.jsx';
+import Statistics from './pages/Statistics.jsx';
+import Settings from './pages/Settings.jsx';
+import Login from './pages/Login.jsx';
 
 function App() {
-  // 🔥 Используем кастомный хук для управления технологиями
-  const {
-    technologies,
-    updateTechnologyStatus,
-    updateTechnologyNotes,
-    updateAllStatuses,
-    exportData,
-    resetToInitial
-  } = useTechnologies();
+  const location = useLocation();
+  const [reloadNoticePath, setReloadNoticePath] = useState(null);
 
-  const [searchQuery, setSearchQuery] = useState('');
+  useEffect(() => {
+    const navEntries = performance.getEntriesByType?.('navigation') || [];
+    const navigationEntry = navEntries[0];
+    const isReload = navigationEntry
+      ? navigationEntry.type === 'reload'
+      : performance?.navigation?.type === performance?.navigation?.TYPE_RELOAD;
 
-  // 🔥 Обработчик случайного выбора
-  const handleRandomSelect = (id) => {
-    updateTechnologyStatus(id, 'in-progress');
-  };
+    if (isReload && window.location.pathname !== '/') {
+      setReloadNoticePath(window.location.pathname);
+    }
+  }, []);
 
-  // 🔥 Фильтрация технологий
-  const filteredTechnologies = technologies.filter(tech =>
-    tech.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    tech.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    (tech.notes && tech.notes.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
-
-  const completedCount = technologies.filter(tech => tech.status === 'completed').length;
-  const withNotesCount = technologies.filter(tech => tech.notes && tech.notes.length > 0).length;
-  const completionPercentage = technologies.length > 0 ? Math.round((completedCount / technologies.length) * 100) : 0;
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setReloadNoticePath(null);
+    }
+  }, [location.pathname]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>🚀 Трекер изучения технологий</h1>
-        <p>Отслеживайте ваш прогресс в изучении React с автосохранением</p>
-      </header>
-      
-      {/* 🔍 Поле поиска */}
-      <div className="search-box">
-        <input
-          type="text"
-          placeholder="🔍 Поиск технологий по названию, описанию или заметкам..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="search-input"
-        />
-        <span className="search-results">
-          Найдено: {filteredTechnologies.length} из {technologies.length}
-        </span>
-      </div>
+    <AuthProvider>
+      <div className="App">
+        <Navigation />
 
-      <ProgressHeader technologies={technologies} />
-      
-      <QuickActions 
-        technologies={technologies}
-        onUpdateAllStatuses={updateAllStatuses}
-        onRandomSelect={handleRandomSelect}
-        onExport={exportData}
-        onReset={resetToInitial}
-      />
-
-      {/* 📱 Компоненты из практики 21 */}
-      <div className="demo-components">
-        <WindowSizeTracker />
-        <UserProfile />
-        <ContactForm />
-      </div>
-      
-      <div className="technologies-list">
-        <h2>📚 Дорожная карта изучения</h2>
-        
-        {/* 🔥 ИНФОРМАЦИЯ О СОХРАНЕНИИ */}
-        <div className="storage-info">
-          <p>
-            💾 <strong>Автосохранение включено</strong> - данные сохраняются автоматически
-          </p>
-          <div className="storage-stats">
-            <span>Технологий: {technologies.length}</span>
-            <span>Заметок: {withNotesCount}</span>
-            <span>Прогресс: {completionPercentage}%</span>
+        {reloadNoticePath && (
+          <div className="reload-notice">
+            <p>
+              Страница <strong>{reloadNoticePath}</strong> обновлена напрямую. Для корректной работы SPA
+              перейдите на главную и используйте встроенную навигацию.
+            </p>
+            <Link to="/" className="btn btn-primary">
+              ← На главную
+            </Link>
           </div>
-        </div>
-
-        {filteredTechnologies.length === 0 ? (
-          <div className="no-results">
-            <p>😔 Технологии по запросу "{searchQuery}" не найдены</p>
-            <button onClick={() => setSearchQuery('')}>
-              Показать все технологии
-            </button>
-          </div>
-        ) : (
-          filteredTechnologies.map(tech => (
-            <TechnologyCard
-              key={tech.id}
-              id={tech.id}
-              title={tech.title}
-              description={tech.description}
-              status={tech.status}
-              notes={tech.notes}
-              onStatusChange={updateTechnologyStatus}
-              onNotesChange={updateTechnologyNotes}
-            />
-          ))
         )}
+
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/technologies" element={<TechnologyList />} />
+            <Route path="/technology/:id" element={<TechnologyDetail />} />
+            <Route path="/add-technology" element={<AddTechnology />} />
+            <Route path="/statistics" element={<Statistics />} />
+            <Route 
+              path="/settings" 
+              element={
+                <ProtectedRoute>
+                  <Settings />
+                </ProtectedRoute>
+              } 
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </main>
       </div>
-    </div>
+    </AuthProvider>
   );
 }
 
