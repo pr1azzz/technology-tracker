@@ -1,0 +1,152 @@
+.api-selector {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  border: 1px solid #f1f3f5;
+  margin-bottom: 24px;
+}
+
+.api-selector h3 {
+  margin: 0 0 20px 0;
+  color: #212529;
+  font-size: 1.2rem;
+}
+
+.api-presets {
+  margin-bottom: 24px;
+}
+
+.preset-label {
+  margin: 0 0 12px 0;
+  color: #495057;
+  font-weight: 600;
+}
+
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.preset-btn {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px 16px;
+  border: 2px solid #e9ecef;
+  background: #f8f9fa;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  color: #495057;
+}
+
+.preset-btn:hover {
+  border-color: #4ecdc4;
+  background: #e8f9f8;
+  color: #4ecdc4;
+}
+
+.preset-btn.active {
+  border-color: #4ecdc4;
+  background: #4ecdc4;
+  color: white;
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
+}
+
+.selector-divider {
+  border: none;
+  border-top: 2px solid #e9ecef;
+  margin: 24px 0;
+}
+
+.custom-api {
+  margin-bottom: 24px;
+}
+
+.custom-label {
+  margin: 0 0 16px 0;
+  color: #495057;
+  font-weight: 600;
+}
+
+.input-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-weight: 600;
+  color: #343a40;
+  font-size: 0.95rem;
+}
+
+.api-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: 'Courier New', monospace;
+  transition: border-color 0.2s ease;
+}
+
+.api-input:focus {
+  outline: none;
+  border-color: #4ecdc4;
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.15);
+}
+
+.input-group small {
+  color: #868e96;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.api-info {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid #4ecdc4;
+  margin-top: 20px;
+}
+
+.api-info h4 {
+  margin: 0 0 12px 0;
+  color: #212529;
+  font-size: 1rem;
+}
+
+.api-info ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.api-info li {
+  color: #495057;
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .api-selector {
+    padding: 16px;
+  }
+
+  .preset-btn {
+    min-width: 150px;
+  }
+
+  .preset-buttons {
+    flex-direction: column;
+  }
+
+  .preset-btn {
+    width: 100%;
+  }
+}

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTechnologies } from '../hooks/useTechnologies.jsx';
 import RoadmapImporter from '../components/RoadmapImporter.jsx';
@@ -6,6 +7,8 @@ import './TechnologyList.css';
 
 function TechnologyList() {
   const { technologies, setTechnologies } = useTechnologies();
+  const [apiUrl, setApiUrl] = useState('https://dummyjson.com/products?limit=12&select=id,title,description,category,rating,thumbnail,images,brand');
+  const [dataPath, setDataPath] = useState('products');
 
   const handleLocalImport = async (technology) => {
     setTechnologies(prev => {
@@ -19,6 +22,10 @@ function TechnologyList() {
       };
       return [...prev, normalizedTech];
     });
+  };
+
+  const handleApiUrlChange = (e) => {
+    setApiUrl(e.target.value);
   };
 
   // 🔥 Статусы на русском
@@ -53,14 +60,43 @@ function TechnologyList() {
         </Link>
       </div>
 
-      {/* 🔥 Импорт дорожной карты */}
-      <div className="roadmap-import-section">
-        <RoadmapImporter onAddTechnology={handleLocalImport} />
+      {/* 🔥 Поле для URL API */}
+      <div className="api-url-section">
+        <h3>🌐 Источник данных</h3>
+        <div className="url-inputs">
+          <div className="input-group">
+            <label>URL для загрузки технологий:</label>
+            <input
+              type="text"
+              value={apiUrl}
+              onChange={handleApiUrlChange}
+              placeholder="https://dummyjson.com/products?limit=12"
+              className="api-url-input"
+            />
+          </div>
+        </div>
       </div>
 
-      {/* 🔎 Поиск технологий */}
-      <div className="technology-search-section">
-        <TechnologySearch onAdd={handleLocalImport} />
+      {/* 🔥 Импорт и поиск */}
+      <div className="api-actions">
+        {/* 🔥 Импорт всех технологий */}
+        <div className="roadmap-import-section">
+          <RoadmapImporter 
+            apiUrl={apiUrl}
+            dataPath={dataPath}
+            onAddTechnology={handleLocalImport}
+            buttonLabel="📥 Загрузить технологии"
+          />
+        </div>
+
+        {/* 🔎 Поиск технологий */}
+        <div className="technology-search-section">
+          <TechnologySearch 
+            onAdd={handleLocalImport}
+            searchUrl={apiUrl}
+            dataPath={dataPath}
+          />
+        </div>
       </div>
 
       {/* 🔥 Статистика */}

@@ -382,3 +382,59 @@
     font-size: 1.8em;
   }
 }
+
+/* 🔥 Универсальные стили для кнопок */
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: #4ecdc4;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #45b8b0;
+}
+
+.btn-secondary {
+  background: #868e96;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #74787f;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid #ced4da;
+  color: #495057;
+}
+
+.btn-outline:hover {
+  border-color: #4ecdc4;
+  color: #4ecdc4;
+  background: rgba(78, 205, 196, 0.05);
+}

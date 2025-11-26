@@ -3,9 +3,7 @@ import { mapProductToTechnology } from '../hooks/useTechnologiesApi';
 import mockTechnologies from '../data/mockTechnologies';
 import './TechnologySearch.css';
 
-const SEARCH_URL = 'https://dummyjson.com/products/search?limit=8&select=id,title,description,category,rating,thumbnail,images,brand';
-
-function TechnologySearch({ onAdd }) {
+function TechnologySearch({ onAdd, searchUrl, dataPath = 'products' }) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -38,6 +36,11 @@ function TechnologySearch({ onAdd }) {
       return;
     }
 
+    if (!searchUrl) {
+      setError('API URL не установлен');
+      return;
+    }
+
     debounceRef.current = setTimeout(() => {
       if (abortRef.current) {
         abortRef.current.abort();
@@ -47,7 +50,11 @@ function TechnologySearch({ onAdd }) {
       setLoading(true);
       setError('');
 
-      fetch(`${SEARCH_URL}&q=${encodeURIComponent(trimmedQuery)}`, {
+      const url = searchUrl.includes('?') 
+        ? `${searchUrl}&q=${encodeURIComponent(trimmedQuery)}`
+        : `${searchUrl}?q=${encodeURIComponent(trimmedQuery)}`;
+
+      fetch(url, {
         signal: abortRef.current.signal
       })
         .then(response => {
@@ -55,12 +62,14 @@ function TechnologySearch({ onAdd }) {
           return response.json();
         })
         .then(data => {
-          const products = Array.isArray(data.products) ? data.products : [];
+          const products = Array.isArray(data[dataPath]) ? data[dataPath] : 
+                          Array.isArray(data.products) ? data.products :
+                          Array.isArray(data) ? data : [];
           setResults(products.map(mapProductToTechnology));
         })
         .catch(err => {
           if (err.name !== 'AbortError') {
-            setError('API недоступно, показаны результаты из локального списка');
+            setError(`API недоступно или ошибка: ${err.message}`);
             const fallback = mockTechnologies.filter(item =>
               item.title.toLowerCase().includes(trimmedQuery.toLowerCase())
             );
@@ -75,7 +84,7 @@ function TechnologySearch({ onAdd }) {
         clearTimeout(debounceRef.current);
       }
     };
-  }, [trimmedQuery]);
+  }, [trimmedQuery, searchUrl, dataPath]);
 
   const handleAdd = async (tech) => {
     if (!onAdd) return;

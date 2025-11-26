@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import mockTechnologies from '../data/mockTechnologies';
 
 export const DEFAULT_API_URL =
-  'https://dummyjson.com/products?limit=12&select=id,title,description,category,rating,thumbnail,images,brand';
+  'http://localhost:3001/api/technologies?limit=12';
 
 export const mapProductToTechnology = (product) => ({
   id: product.id,

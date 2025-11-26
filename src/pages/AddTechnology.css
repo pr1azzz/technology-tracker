@@ -30,6 +30,28 @@
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
 }
 
+.search-section,
+.importer-section {
+  margin-bottom: 32px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #4ecdc4;
+}
+
+.search-section h2,
+.importer-section h2 {
+  margin-top: 0;
+  color: #212529;
+  margin-bottom: 16px;
+}
+
+.section-divider {
+  margin: 32px 0;
+  border: none;
+  border-top: 2px solid #e9ecef;
+}
+
 .form-header h1 {
   margin: 0 0 8px;
   font-size: 2rem;

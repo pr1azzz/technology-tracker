@@ -6,6 +6,62 @@
   margin-bottom: 30px;
 }
 
+.api-url-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  margin-bottom: 24px;
+  border: 1px solid #f1f3f5;
+}
+
+.api-url-section h3 {
+  margin: 0 0 16px 0;
+  color: #212529;
+  font-size: 1.1rem;
+}
+
+.url-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-weight: 600;
+  color: #343a40;
+  font-size: 0.95rem;
+}
+
+.api-url-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: 'Courier New', monospace;
+  transition: border-color 0.2s ease;
+}
+
+.api-url-input:focus {
+  outline: none;
+  border-color: #4ecdc4;
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.15);
+}
+
+.api-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
 .technology-list-page {
   max-width: 1200px;
   margin: 0 auto;

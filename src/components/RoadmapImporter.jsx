@@ -1,19 +1,17 @@
 import { useMemo, useState } from 'react';
-import { DEFAULT_API_URL, mapProductToTechnology } from '../hooks/useTechnologiesApi';
+import { mapProductToTechnology } from '../hooks/useTechnologiesApi';
 import mockTechnologies from '../data/mockTechnologies';
 import './RoadmapImporter.css';
 
 function RoadmapImporter({
-  defaultUrl = DEFAULT_API_URL,
+  apiUrl,
+  dataPath = 'products',
   onAddTechnology,
   transformEntry = mapProductToTechnology,
   buttonLabel = 'Импорт из API'
 }) {
   const [importing, setImporting] = useState(false);
-  const [customUrl, setCustomUrl] = useState(defaultUrl);
   const [statusMessage, setStatusMessage] = useState('');
-
-  const resolvedUrl = useMemo(() => customUrl?.trim() || defaultUrl, [customUrl, defaultUrl]);
 
   const handleImportRoadmap = async (roadmapUrl) => {
     try {
@@ -24,18 +22,20 @@ function RoadmapImporter({
         throw new Error('Не передан обработчик добавления технологий');
       }
 
+      if (!roadmapUrl) {
+        throw new Error('URL API не установлен');
+      }
+
       const response = await fetch(roadmapUrl);
-      if (!response.ok) throw new Error('Не удалось загрузить дорожную карту');
+      if (!response.ok) throw new Error('Не удалось загрузить данные');
 
       const data = await response.json();
-      const products = Array.isArray(data.products)
-        ? data.products
-        : Array.isArray(data.technologies)
-          ? data.technologies
-          : [];
+      const products = Array.isArray(data[dataPath]) ? data[dataPath] :
+                      Array.isArray(data.products) ? data.products :
+                      Array.isArray(data) ? data : [];
 
       if (!products.length) {
-        throw new Error('API вернуло пустой список технологий');
+        throw new Error('API вернуло пустой список');
       }
 
       let added = 0;
@@ -45,7 +45,7 @@ function RoadmapImporter({
         added += 1;
       }
 
-      setStatusMessage(`Импортировано ${added} технологий из ${roadmapUrl}`);
+      setStatusMessage(`✅ Импортировано ${added} технологий из API`);
     } catch (err) {
       if (err.name === 'AbortError') return;
       try {
@@ -53,9 +53,9 @@ function RoadmapImporter({
         for (const tech of mockTechnologies) {
           await onAddTechnology({ ...tech, id: Date.now() + Math.random() });
         }
-        setStatusMessage(`API недоступно, импортировано ${fallbackCount} технологий из локального списка`);
+        setStatusMessage(`⚠️ API недоступно, импортировано ${fallbackCount} технологий из локального списка`);
       } catch (fallbackError) {
-        setStatusMessage(`Ошибка импорта: ${err.message}`);
+        setStatusMessage(`❌ Ошибка импорта: ${err.message}`);
       }
     } finally {
       setImporting(false);
@@ -63,36 +63,25 @@ function RoadmapImporter({
   };
 
   const handleExampleImport = () => {
-    handleImportRoadmap(resolvedUrl);
+    if (!apiUrl) {
+      setStatusMessage('❌ API URL не установлен');
+      return;
+    }
+    handleImportRoadmap(apiUrl);
   };
 
   return (
     <div className="roadmap-importer">
-      <h3>Импорт дорожной карты</h3>
-
-      <label className="import-input-wrapper">
-        <span>API URL</span>
-        <input
-          type="text"
-          value={customUrl}
-          onChange={(e) => setCustomUrl(e.target.value)}
-          placeholder="https://dummyjson.com/products?..."
-          disabled={importing}
-        />
-      </label>
-
-      <div className="import-actions">
-        <button
-          onClick={handleExampleImport}
-          disabled={importing}
-          className="import-button"
-        >
-          {importing ? 'Импорт...' : buttonLabel}
-        </button>
-      </div>
+      <button
+        onClick={handleExampleImport}
+        disabled={importing || !apiUrl}
+        className="import-button"
+      >
+        {importing ? '⏳ Импорт...' : '📥 ' + buttonLabel}
+      </button>
 
       {statusMessage && (
-        <div className={`import-message ${statusMessage.startsWith('Ошибка') ? 'error' : 'success'}`}>
+        <div className={`import-message ${statusMessage.startsWith('❌') ? 'error' : 'success'}`}>
           {statusMessage}
         </div>
       )}

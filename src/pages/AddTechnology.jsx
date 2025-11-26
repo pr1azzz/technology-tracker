@@ -79,6 +79,27 @@ function AddTechnology() {
     navigate('/technologies');
   };
 
+  // 🔥 Обработчик добавления технологии из поиска
+  const handleAddFromSearch = async (technology) => {
+    const newTech = {
+      id: Date.now(),
+      title: technology.title,
+      description: technology.description,
+      status: 'not-started',
+      notes: technology.notes || '',
+      category: technology.category,
+      difficulty: technology.difficulty,
+      externalId: technology.externalId,
+      externalSource: technology.externalSource,
+      sourceUrl: technology.sourceUrl,
+      resources: technology.resources || []
+    };
+
+    const updatedTechnologies = [...technologies, newTech];
+    setTechnologies(updatedTechnologies);
+    alert('✅ Технология успешно добавлена из поиска!');
+  };
+
   // 🔥 Сброс формы
   const handleReset = () => {
     setFormData({
