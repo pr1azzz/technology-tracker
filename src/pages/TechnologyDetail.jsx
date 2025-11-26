@@ -1,11 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTechnologies } from '../hooks/useTechnologies.jsx';
+import StudyDeadlineForm from '../components/StudyDeadlineForm.jsx';
 import './TechnologyDetail.css';
 
 function TechnologyDetail() {
   const { id } = useParams();
-  const { technologies, updateTechnologyStatus, updateTechnologyNotes } = useTechnologies();
+  const { technologies, updateTechnologyStatus, updateTechnologyNotes, setTechnologies } = useTechnologies();
   const [technology, setTechnology] = useState(null);
   const [resourceState, setResourceState] = useState({
     loading: false,
@@ -15,7 +16,8 @@ function TechnologyDetail() {
 
   // 🔥 Синхронизируем технологию с состоянием и localStorage
   useEffect(() => {
-    const techFromState = technologies.find(tech => tech.id === parseInt(id));
+    // Сравниваем id как строки — это устойчиво к числам/строкам и к дробным id
+    const techFromState = technologies.find(tech => String(tech.id) === String(id));
 
     if (techFromState) {
       setTechnology(techFromState);
@@ -27,7 +29,7 @@ function TechnologyDetail() {
 
     if (saved) {
       const parsed = JSON.parse(saved);
-      const techFromStorage = parsed.find(tech => tech.id === parseInt(id));
+      const techFromStorage = parsed.find(tech => String(tech.id) === String(id));
       setTechnology(techFromStorage || null);
     } else {
       setTechnology(null);
@@ -61,6 +63,13 @@ function TechnologyDetail() {
     if (!technology) return;
     updateTechnologyNotes(technology.id, newNotes);
     setTechnology(prev => prev ? { ...prev, notes: newNotes } : prev);
+  };
+
+  // 🔥 Установка срока изучения
+  const handleSaveDeadline = (date) => {
+    if (!technology) return;
+    setTechnologies(prev => prev.map(t => t.id === technology.id ? { ...t, deadline: date } : t));
+    setTechnology(prev => prev ? { ...prev, deadline: date } : prev);
   };
 
   // 🔥 Текст статуса на русском
@@ -217,7 +226,24 @@ function TechnologyDetail() {
                 <strong>Создано:</strong>
                 <span>Системой</span>
               </div>
+              <div className="meta-item">
+                <strong>Срок изучения:</strong>
+                <span>{technology.deadline ? new Date(technology.deadline).toLocaleDateString() : '—'}</span>
+              </div>
             </div>
+          </div>
+
+          {/* Форма установки срока */}
+          <div className="deadline-section">
+            <h2>📅 Установить срок</h2>
+            <StudyDeadlineForm
+              initialDate={technology.deadline}
+              onSave={(d) => {
+                // d is in yyyy-mm-dd format from the input — convert to ISO
+                const iso = new Date(d + 'T00:00:00').toISOString();
+                handleSaveDeadline(iso);
+              }}
+            />
           </div>
 
           {/* 🔗 Дополнительные ресурсы */}

@@ -14,8 +14,11 @@ function TechnologyList() {
 
   const handleLocalImport = async (technology) => {
     setTechnologies(prev => {
-      const exists = prev.some(item => item.id === technology.id);
-      const generatedId = exists || !technology.id ? Date.now() + Math.random() : technology.id;
+      const exists = prev.some(item => String(item.id) === String(technology.id));
+      // Если у технологии нет id или такой id уже существует — создаём уникальный целочисленный id
+      const generatedId = (!technology.id || exists)
+        ? Date.now() + Math.floor(Math.random() * 1000)
+        : technology.id;
       const normalizedTech = {
         ...technology,
         id: generatedId,
@@ -63,9 +66,16 @@ function TechnologyList() {
   const handleImportFromFile = (imported) => {
     // Слияние: не добавлять дубликаты по id
     setTechnologies(prev => {
-      const existingIds = new Set(prev.map(t => t.id));
-      const filtered = imported.filter(t => !existingIds.has(t.id));
-      return [...prev, ...filtered];
+      const existingIds = new Set(prev.map(t => String(t.id)));
+      const filtered = imported.filter(t => !existingIds.has(String(t.id)));
+      // Нормализуем импорт — если у импортируемого элемента нет id, сгенерируем
+      const normalized = filtered.map(t => ({
+        ...t,
+        id: t.id ? t.id : Date.now() + Math.floor(Math.random() * 1000),
+        status: t.status || 'not-started',
+        notes: t.notes || ''
+      }));
+      return [...prev, ...normalized];
     });
   };
 

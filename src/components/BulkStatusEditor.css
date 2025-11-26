@@ -22,19 +22,27 @@
   max-height: 180px;
   overflow-y: auto;
 }
-.bulk-list li {
-  margin-bottom: 0.25rem;
-  display: flex;
-  align-items: center;
+.bulk-item {
+  margin-bottom: 0.5rem;
 }
-.bulk-list label {
+.bulk-item-label {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background 0.12s, box-shadow 0.12s;
+  background: linear-gradient(180deg, #ffffff, #fbfdff);
+  box-shadow: 0 1px 3px rgba(16,24,40,0.04);
   cursor: pointer;
-  display: flex;
-  align-items: center;
 }
-.bulk-list input[type="checkbox"] {
-  margin-right: 0.5rem;
-}
+.bulk-item-label:hover { box-shadow: 0 6px 18px rgba(16,24,40,0.08); }
+.bulk-item-label input[type="checkbox"] { width: 18px; height: 18px; }
+.item-main { display: flex; flex-direction: column; }
+.item-title { font-weight: 600; color: #102a43; }
+.item-meta { font-size: 0.85rem; color: #64748b; margin-top: 4px; }
+.item-status { display:flex; align-items:center; }
 .bulk-status-controls {
   display: flex;
   align-items: center;
@@ -54,3 +62,47 @@
   background: #bdbdbd;
   cursor: not-allowed;
 }
+
+.bulk-summary {
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+.chip {
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.chip.not-started { background: #757575; }
+.chip.in-progress { background: #1976d2; }
+.chip.completed { background: #388e3c; }
+
+.confirm-overlay {
+  position: fixed;
+  left: 0; right: 0; top: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.35);
+  z-index: 60;
+}
+.confirm-box {
+  background: #fff;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  max-width: 420px;
+}
+.confirm-actions { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+.btn.btn-secondary { background: #455a64; color: #fff; border: none; padding: 0.4rem 0.7rem; border-radius: 4px; }
+.tech-title { margin-left: 0.25rem; }
+/* Header polish */
+.bulk-status-header { display:flex; align-items:center; gap:12px }
+.bulk-status-header .bulk-label { display:flex; align-items:center; gap:8px }
+.bulk-status-header svg { border-radius:6px }
+.bulk-summary { margin-bottom: 0.5rem; color: #555; font-size:0.95rem }
+.confirm-box p { margin: 0; color: #102a43 }
