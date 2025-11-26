@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useTechnologies } from '../hooks/useTechnologies.jsx';
 import RoadmapImporter from '../components/RoadmapImporter.jsx';
 import TechnologySearch from '../components/TechnologySearch.jsx';
+import BulkStatusEditor from '../components/BulkStatusEditor.jsx';
+import ExportImportPanel from '../components/ExportImportPanel.jsx';
 import './TechnologyList.css';
 
 function TechnologyList() {
@@ -46,6 +48,25 @@ function TechnologyList() {
       'completed': 'status-completed'
     };
     return statusClassMap[status] || '';
+  };
+
+  // Массовое обновление статусов
+  const handleBulkUpdate = (ids, status) => {
+    setTechnologies(prev =>
+      prev.map(tech =>
+        ids.includes(tech.id) ? { ...tech, status } : tech
+      )
+    );
+  };
+
+  // Импорт из файла
+  const handleImportFromFile = (imported) => {
+    // Слияние: не добавлять дубликаты по id
+    setTechnologies(prev => {
+      const existingIds = new Set(prev.map(t => t.id));
+      const filtered = imported.filter(t => !existingIds.has(t.id));
+      return [...prev, ...filtered];
+    });
   };
 
   return (
@@ -95,9 +116,23 @@ function TechnologyList() {
             onAdd={handleLocalImport}
             searchUrl={apiUrl}
             dataPath={dataPath}
+            existingTechnologies={technologies}
           />
         </div>
       </div>
+
+
+      {/* 🔥 Экспорт / Импорт данных */}
+      <ExportImportPanel
+        technologies={technologies}
+        onImport={handleImportFromFile}
+      />
+
+      {/* 🔥 Массовое редактирование статусов */}
+      <BulkStatusEditor
+        technologies={technologies}
+        onBulkUpdate={handleBulkUpdate}
+      />
 
       {/* 🔥 Статистика */}
       <div className="stats-overview">

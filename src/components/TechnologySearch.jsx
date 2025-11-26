@@ -3,7 +3,7 @@ import { mapProductToTechnology } from '../hooks/useTechnologiesApi';
 import mockTechnologies from '../data/mockTechnologies';
 import './TechnologySearch.css';
 
-function TechnologySearch({ onAdd, searchUrl, dataPath = 'products' }) {
+function TechnologySearch({ onAdd, searchUrl, dataPath = 'products', existingTechnologies = [] }) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -12,6 +12,14 @@ function TechnologySearch({ onAdd, searchUrl, dataPath = 'products' }) {
   const debounceRef = useRef(null);
 
   const trimmedQuery = useMemo(() => query.trim(), [query]);
+
+  // 🔥 Проверяем, добавлена ли технология
+  const isAlreadyAdded = (tech) => {
+    return existingTechnologies.some(existing => 
+      existing.title.toLowerCase() === tech.title.toLowerCase() ||
+      (existing.externalId && existing.externalId === tech.externalId)
+    );
+  };
 
   useEffect(() => {
     return () => {
@@ -108,17 +116,24 @@ function TechnologySearch({ onAdd, searchUrl, dataPath = 'products' }) {
 
       {!loading && !error && results.length > 0 && (
         <ul className="tech-search-results">
-          {results.map(result => (
-            <li key={`${result.externalSource}-${result.externalId}`}>
-              <div>
-                <strong>{result.title}</strong>
-                <p>{result.description}</p>
-              </div>
-              <button onClick={() => handleAdd(result)}>
-                Добавить
-              </button>
-            </li>
-          ))}
+          {results.map(result => {
+            const alreadyAdded = isAlreadyAdded(result);
+            return (
+              <li key={`${result.externalSource}-${result.externalId}`}>
+                <div>
+                  <strong>{result.title}</strong>
+                  <p>{result.description}</p>
+                </div>
+                <button 
+                  onClick={() => handleAdd(result)}
+                  disabled={alreadyAdded}
+                  className={alreadyAdded ? 'btn-added' : ''}
+                >
+                  {alreadyAdded ? '✅ Добавлена' : 'Добавить'}
+                </button>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>
