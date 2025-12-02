@@ -48,3 +48,49 @@
   }
 }
 
+/* Theme overrides for the dark gray theme */
+html.theme-switched .login-page {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+html.theme-switched .login-card {
+  background: #353941;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+html.theme-switched .login-card p {
+  color: #b0b3b8;
+}
+
+html.theme-switched .login-card label {
+  color: #e8e9eb;
+  font-weight: 600;
+}
+
+html.theme-switched .login-card input {
+  background: #404854;
+  color: #e8e9eb;
+  border: 2px solid #515966;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+html.theme-switched .login-card input:focus {
+  outline: none;
+  border-color: #4ecdc4;
+  box-shadow: 0 0 0 3px rgba(78,205,196,0.15);
+}
+
+html.theme-switched .login-card input::placeholder {
+  color: #888;
+}
+
+html.theme-switched .login-card .error-message {
+  color: #ff8a80;
+}
+

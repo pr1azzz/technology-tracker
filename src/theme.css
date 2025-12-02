@@ -1,0 +1,640 @@
+/* Global Gray Theme Styles - Dark Gray Theme Support */
+
+/* Root & Body */
+html,
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.theme-switched,
+html.theme-switched body {
+  background-color: #2a2d33;
+  color: #e8e9eb;
+}
+
+html.theme-switched #root {
+  background-color: #2a2d33 !important;
+  color: #e8e9eb !important;
+}
+
+/* Navigation */
+.main-navigation {
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+html.theme-switched .main-navigation {
+  background: #1f2229;
+  border-bottom-color: #1f2229;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+html.theme-switched .nav-menu a,
+html.theme-switched .nav-menu button {
+  color: #d0d2d7;
+}
+
+html.theme-switched .nav-menu a:hover,
+html.theme-switched .nav-menu button:hover,
+html.theme-switched .nav-menu a.active {
+  color: #4ecdc4;
+}
+
+/* Cards & Containers */
+.card,
+.stat-card,
+.chart-card,
+.insights-card,
+.api-url-section,
+.search-section,
+.importer-section,
+.add-technology-form,
+.stats-overview,
+.stat-item,
+.technology-card,
+.empty-state {
+  transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+html.theme-switched .card,
+html.theme-switched .stat-card,
+html.theme-switched .chart-card,
+html.theme-switched .insights-card,
+html.theme-switched .api-url-section,
+html.theme-switched .search-section,
+html.theme-switched .importer-section,
+html.theme-switched .add-technology-form,
+html.theme-switched .stats-overview,
+html.theme-switched .stat-item,
+html.theme-switched .technology-card,
+html.theme-switched .empty-state {
+  background: #353941;
+  color: #e8e9eb;
+  border-color: #404854;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal */
+.modal-content {
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+html.theme-switched .modal-content {
+  background: #353941;
+  color: #e8e9eb;
+  border-color: #404854;
+}
+
+/* Page Headers */
+.page-header,
+.hero-section {
+  transition: background 0.3s, color 0.3s;
+}
+
+html.theme-switched .page-header,
+html.theme-switched .hero-section {
+  background: linear-gradient(135deg, #404854 0%, #353941 100%);
+  color: #e8e9eb;
+}
+
+/* Page header paragraphs should be dark/black in dark theme for contrast */
+html.theme-switched .page-header p {
+  color: #1a1a1a !important;
+}
+
+/* Input Fields */
+input,
+textarea,
+select,
+.form-input,
+.form-textarea,
+.form-select,
+.api-url-input,
+.search-input {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+html.theme-switched input,
+html.theme-switched textarea,
+html.theme-switched select,
+html.theme-switched .form-input,
+html.theme-switched .form-textarea,
+html.theme-switched .form-select,
+html.theme-switched .api-url-input,
+html.theme-switched .search-input {
+  background: #404854;
+  color: #e8e9eb;
+  border-color: #515966;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus,
+.api-url-input:focus,
+.search-input:focus {
+  border-color: #4ecdc4;
+}
+
+html.theme-switched input:focus,
+html.theme-switched textarea:focus,
+html.theme-switched select:focus,
+html.theme-switched .form-input:focus,
+html.theme-switched .form-textarea:focus,
+html.theme-switched .form-select:focus,
+html.theme-switched .api-url-input:focus,
+html.theme-switched .search-input:focus {
+  border-color: #4ecdc4;
+  background: #cfd1d7;
+}
+
+/* Buttons */
+.btn-outline,
+.btn-secondary {
+  transition: all 0.3s ease;
+}
+
+html.theme-switched .btn-outline,
+html.theme-switched .btn-secondary {
+  color: #0d0d0d;
+  border-color: #a8aab1;
+  background: transparent;
+}
+
+html.theme-switched .btn-outline:hover,
+html.theme-switched .btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: #4ecdc4;
+  color: #4ecdc4;
+}
+
+/* Text Colors - Headings */
+h1, h2, h3, h4, h5, h6,
+.modal-title,
+.card-header h3,
+.header-content h1,
+.chart-header h2 {
+  transition: color 0.3s ease;
+}
+
+html.theme-switched h1,
+html.theme-switched h2,
+html.theme-switched h3,
+html.theme-switched h4,
+html.theme-switched h5,
+html.theme-switched h6,
+html.theme-switched .modal-title,
+html.theme-switched .card-header h3,
+html.theme-switched .header-content h1,
+html.theme-switched .chart-header h2 {
+  color: #e8e9eb;
+}
+
+/* Text Colors - Secondary */
+.text-muted,
+.text-secondary,
+.stat-label,
+.bar-label,
+.insights-card ul,
+.tech-description,
+.header-content p {
+  transition: color 0.3s ease;
+}
+
+html.theme-switched .text-muted,
+html.theme-switched .text-secondary,
+html.theme-switched .stat-label,
+html.theme-switched .bar-label,
+html.theme-switched .insights-card ul,
+html.theme-switched .tech-description,
+html.theme-switched .header-content p {
+  color: #b0b3b8;
+}
+
+/* Links */
+a,
+.btn-link,
+.breadcrumbs a {
+  transition: color 0.3s ease;
+}
+
+html.theme-switched .breadcrumbs a {
+  color: #4ecdc4;
+}
+
+html.theme-switched .breadcrumbs a:hover {
+  color: #45b7d1;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  transition: background 0.3s ease;
+}
+
+html.theme-switched .modal-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Modal-specific: make status badges inside modals use muted gray palette */
+html.theme-switched .modal-content .status,
+html.theme-switched .modal-content .status-not-started,
+html.theme-switched .modal-content .status-in-progress,
+html.theme-switched .modal-content .status-completed,
+html.theme-switched .modal-content .status-badge,
+html.theme-switched .modal-content .status-text {
+  background: #e6e7ea !important;
+  color: #2e2e2e !important;
+  border-color: #d6d7db !important;
+}
+
+html.theme-switched .modal-content .stat-number,
+html.theme-switched .modal-content .stat-value {
+  color: #2e2e2e !important;
+}
+
+/* Modal header/icon adjustments */
+html.theme-switched .modal-content .modal-close-btn:hover {
+  background: rgba(0,0,0,0.06);
+  color: #111;
+  border-color: rgba(0,0,0,0.08);
+}
+
+/* Ensure technology cards/lists inside modals are muted */
+html.theme-switched .modal-content .technology-card,
+html.theme-switched .modal-content .tech-search-results li,
+html.theme-switched .modal-content .tech-notes-preview {
+  background: #e9eaec !important;
+  color: #0d0d0d !important;
+  border-color: #d6d7db !important;
+}
+
+/* Status Values - Colors */
+.stat-value {
+  transition: color 0.3s ease;
+}
+
+html.theme-switched .stat-value {
+  color: #0d0d0d;
+}
+
+html.theme-switched .stat-value.success {
+  color: #388e3c;
+}
+
+html.theme-switched .stat-value.info {
+  color: #0288d1;
+}
+
+html.theme-switched .stat-value.warning {
+  color: #f57c00;
+}
+
+html.theme-switched .chart-score strong {
+  color: #0288d1;
+}
+
+/* Tech Notes */
+.tech-notes-preview {
+  transition: all 0.3s ease;
+}
+
+html.theme-switched .tech-notes-preview {
+  background: #bfc1c7;
+  border-left-color: #4ecdc4;
+}
+
+html.theme-switched .tech-notes-preview strong {
+  color: #0d0d0d;
+}
+
+html.theme-switched .tech-notes-preview p {
+  color: #3a3a3a;
+}
+
+/* Form Errors */
+.error,
+.has-error {
+  transition: all 0.3s ease;
+}
+
+html.theme-switched .error,
+html.theme-switched .has-error {
+  border-color: #ff6b6b !important;
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.error-message,
+.form-hint {
+  transition: color 0.3s ease;
+}
+
+html.theme-switched .error-message {
+  color: #d32f2f;
+}
+
+html.theme-switched .form-hint {
+  color: #4a4a4a;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-thumb {
+  transition: background 0.3s ease;
+}
+
+html.theme-switched ::-webkit-scrollbar-thumb {
+  background: #999;
+}
+
+html.theme-switched ::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Shadows */
+.shadow,
+.box-shadow {
+  transition: box-shadow 0.3s ease;
+}
+
+html.theme-switched .shadow,
+html.theme-switched .box-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* MUI Components */
+.MuiBox-root,
+.MuiPaper-root,
+.MuiCard-root,
+.MuiModal-root,
+.MuiButton-root,
+.MuiInput-root,
+.MuiOutlinedInput-root {
+  transition: background-color 0.3s ease, color 0.3s ease !important;
+}
+
+html.theme-switched .MuiPaper-root {
+  background-color: #353941 !important;
+  color: #e8e9eb !important;
+}
+
+html.theme-switched .MuiOutlinedInput-root {
+  background-color: #404854 !important;
+  color: #e8e9eb !important;
+}
+
+html.theme-switched .MuiOutlinedInput-notchedOutline {
+  border-color: #515966 !important;
+}
+
+/* Notification / Snackbar */
+.notification,
+.alert,
+.snackbar {
+  transition: all 0.3s ease;
+}
+
+html.theme-switched .notification,
+html.theme-switched .alert,
+html.theme-switched .snackbar {
+  background: #353941;
+  color: #e8e9eb;
+  border-color: #404854;
+}
+
+/* Force MUI dialogs, popovers and menus to use the dark gray theme */
+html.theme-switched .MuiDialog-paper,
+html.theme-switched .MuiPopover-paper,
+html.theme-switched .MuiMenu-paper,
+html.theme-switched .MuiPaper-root,
+html.theme-switched .MuiCard-root {
+  background-color: #353941 !important;
+  color: #e8e9eb !important;
+  border-color: #404854 !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4) !important;
+}
+
+/* Catch confirm-overlay / custom dialog boxes */
+html.theme-switched .confirm-overlay {
+  background: rgba(0,0,0,0.6);
+}
+
+html.theme-switched .confirm-box,
+html.theme-switched [role="dialog"] .confirm-box,
+html.theme-switched .confirm-overlay .confirm-box,
+html.theme-switched .confirm-box * {
+  background: #353941 !important;
+  color: #e8e9eb !important;
+}
+
+/* Make chips inside modals muted */
+html.theme-switched .modal-content .chip,
+html.theme-switched .confirm-box .chip,
+html.theme-switched .modal-content .chip.not-started,
+html.theme-switched .confirm-box .chip.not-started,
+html.theme-switched .modal-content .chip.in-progress,
+html.theme-switched .confirm-box .chip.in-progress,
+html.theme-switched .modal-content .chip.completed,
+html.theme-switched .confirm-box .chip.completed {
+  background: #404854 !important;
+  color: #d0d2d7 !important;
+}
+
+/* Ensure small popovers, menus, tooltips, and tab panels adopt the theme */
+html.theme-switched .MuiPopover-paper,
+html.theme-switched .MuiMenu-paper,
+html.theme-switched .MuiTooltip-tooltip,
+html.theme-switched .popover,
+html.theme-switched .popup,
+html.theme-switched .dropdown,
+html.theme-switched .tab-panel,
+html.theme-switched .tab-content,
+html.theme-switched .tabpanel {
+  background: #353941 !important;
+  color: #e8e9eb !important;
+  border-color: #404854 !important;
+}
+
+/* Bulk Status Editor */
+.bulk-status-form,
+.bulk-item-label {
+  transition: all 0.3s ease;
+}
+
+html.theme-switched .bulk-status-form {
+  background: #cfd1d7;
+  color: #0d0d0d;
+  border-color: #bfc1c7;
+}
+
+html.theme-switched .bulk-item-label {
+  background: linear-gradient(180deg, #c3c5cb 0%, #bec0c6 100%);
+  color: #0d0d0d;
+}
+
+html.theme-switched .item-meta {
+  color: #3a3a3a;
+}
+
+/* All form related elements */
+.form-group,
+.form-section,
+.section-divider {
+  transition: all 0.3s ease;
+}
+
+html.theme-switched .section-divider {
+  border-top-color: #c0c2c7;
+}
+
+html.theme-switched .form-group label {
+  color: #1a1a1a;
+}
+
+/* Import/Export Panel */
+.export-import-panel,
+.import-section,
+.export-section {
+  transition: all 0.3s ease;
+}
+
+html.theme-switched .export-import-panel,
+html.theme-switched .import-section,
+html.theme-switched .export-section {
+  background: #cfd1d7;
+  color: #0d0d0d;
+  border-color: #bfc1c7;
+}
+
+/* Study Deadline Form */
+.study-deadline-form,
+.deadline-section {
+  transition: all 0.3s ease;
+}
+
+html.theme-switched .study-deadline-form,
+html.theme-switched .deadline-section {
+  background: #e8eaed;
+  color: #1a1a1a;
+}   
+
+/* Misc common app elements (catch remaining white panels) */
+html.theme-switched .search-box,
+html.theme-switched .no-results,
+html.theme-switched .storage-info,
+html.theme-switched .storage-stats span,
+html.theme-switched .progress-header,
+html.theme-switched .window-size-tracker,
+html.theme-switched .page-card,
+html.theme-switched .panel,
+html.theme-switched .panel-card {
+  background: #cfd1d7;
+  color: #0d0d0d;
+  border-color: #bfc1c7;
+  box-shadow: 0 6px 14px rgba(11,12,13,0.06);
+}
+
+html.theme-switched .search-input,
+html.theme-switched .storage-stats span,
+html.theme-switched .form-input,
+html.theme-switched .api-url-input,
+html.theme-switched .search-input {
+  background: #e9eaec;
+  color: #0d0d0d;
+  border-color: #d6d7db;
+}
+
+html.theme-switched .no-results button,
+html.theme-switched .btn-primary {
+  box-shadow: 0 6px 20px rgba(44,39,55,0.12);
+}
+
+html.theme-switched .empty-state {
+  background: #cfd1d7;
+  border-color: rgba(8,8,8,0.06);
+}
+
+/* Ensure smooth transitions everywhere */
+* {
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-timing-function: ease;
+  transition-duration: 0.3s;
+}
+
+*:focus {
+  transition-duration: 0.1s;
+}
+
+/* Additional catch-all rules for remaining white panels and headers */
+html.theme-switched .App {
+  background: #2a2d33 !important;
+  color: #e8e9eb !important;
+}
+
+html.theme-switched .App-header {
+  background: linear-gradient(135deg, #a8aab1 0%, #94979d 100%);
+  color: #0d0d0d;
+}
+
+html.theme-switched .header-content h1,
+html.theme-switched .hero-section h1 {
+  color: #0d0d0d;
+}
+
+html.theme-switched .api-url-section {
+  border-radius: 12px;
+  padding: 24px;
+}
+
+html.theme-switched .stat-item,
+html.theme-switched .technology-card {
+  background: #e6e7ea;
+}
+
+html.theme-switched .tech-notes-preview {
+  background: #e9eaec;
+  border-left-color: #4ecdc4;
+}
+
+/* Home quick-start (action cards) */
+html.theme-switched .quick-actions-section h2,
+html.theme-switched .action-cards,
+html.theme-switched .action-card {
+  transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+html.theme-switched .quick-actions-section h2 {
+  color: #e8e9eb;
+}
+
+html.theme-switched .action-cards {
+  gap: 25px;
+}
+
+html.theme-switched .action-card {
+  background: #353941;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  border: 1px solid #404854;
+}
+
+html.theme-switched .action-card h4 {
+  color: #e8e9eb;
+}
+
+html.theme-switched .action-card p {
+  color: #b0b3b8;
+}
+
+html.theme-switched .action-link {
+  color: #6c5ce7;
+}
+
+/* Ensure small utility panels and inputs get the gray background */
+html.theme-switched .panel,
+html.theme-switched .panel-card,
+html.theme-switched .page-card {
+  background: #cfd1d7;
+}
+
+

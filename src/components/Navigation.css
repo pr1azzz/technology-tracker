@@ -1,5 +1,6 @@
 .main-navigation {
-  background: white;
+  background: var(--mui-palette-background-paper, white);
+  color: var(--mui-palette-text-primary, #333);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 0 20px;
   display: flex;
@@ -8,11 +9,12 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: background 0.3s, color 0.3s;
 }
 
 .nav-brand h2 {
   margin: 0;
-  color: #333;
+  color: var(--mui-palette-primary-main, #1976d2);
   font-size: 1.5em;
 }
 
@@ -36,7 +38,7 @@
 .nav-menu a,
 .nav-menu button {
   text-decoration: none;
-  color: #666;
+  color: var(--mui-palette-text-secondary, #666);
   font-weight: 500;
   padding: 15px 0;
   position: relative;
@@ -95,6 +97,21 @@
   .nav-brand h2 {
     font-size: 1.3em;
   }
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(1.1);
 }
 
 @media (max-width: 480px) {

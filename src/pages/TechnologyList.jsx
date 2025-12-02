@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTechnologies } from '../hooks/useTechnologies.jsx';
+import { useNotification } from '../context/NotificationContext.jsx';
 import RoadmapImporter from '../components/RoadmapImporter.jsx';
 import TechnologySearch from '../components/TechnologySearch.jsx';
 import BulkStatusEditor from '../components/BulkStatusEditor.jsx';
@@ -9,6 +10,7 @@ import './TechnologyList.css';
 
 function TechnologyList() {
   const { technologies, setTechnologies } = useTechnologies();
+  const { showNotification } = useNotification();
   const [apiUrl, setApiUrl] = useState('https://dummyjson.com/products?limit=12&select=id,title,description,category,rating,thumbnail,images,brand');
   const [dataPath, setDataPath] = useState('products');
 
@@ -60,6 +62,7 @@ function TechnologyList() {
         ids.includes(tech.id) ? { ...tech, status } : tech
       )
     );
+    showNotification(`✅ Статус обновлён для ${ids.length} технологий`, 'success', 3000);
   };
 
   // Импорт из файла
@@ -75,6 +78,7 @@ function TechnologyList() {
         status: t.status || 'not-started',
         notes: t.notes || ''
       }));
+      showNotification(`✅ Импортировано ${normalized.length} технологий`, 'success', 3000);
       return [...prev, ...normalized];
     });
   };

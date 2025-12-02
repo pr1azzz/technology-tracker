@@ -81,3 +81,61 @@
   border-color: #b2f2bb;
 }
 
+/* Theme overrides for dark theme */
+html.theme-switched .roadmap-importer {
+  background: #353941;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  border: 1px solid #404854;
+  color: #e8e9eb;
+}
+
+html.theme-switched .roadmap-importer h3 {
+  color: #e8e9eb;
+}
+
+html.theme-switched .import-input-wrapper span {
+  color: #b0b3b8;
+}
+
+html.theme-switched .import-input-wrapper input {
+  background: #404854;
+  color: #e8e9eb;
+  border: 2px solid #515966;
+}
+
+html.theme-switched .import-input-wrapper input:focus {
+  outline: none;
+  border-color: #4ecdc4;
+}
+
+html.theme-switched .import-button {
+  background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+  color: #fff;
+  box-shadow: 0 6px 15px rgba(44, 39, 55, 0.12);
+}
+
+html.theme-switched .import-button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(44, 39, 55, 0.16);
+}
+
+html.theme-switched .import-message {
+  background: #404854;
+  color: #e8e9eb;
+  border-color: rgba(255,255,255,0.04);
+}
+
+html.theme-switched .import-message.error {
+  background: #4a2c2c;
+  color: #ff8a80;
+  border-color: #ff6b6b;
+}
+
+html.theme-switched .import-message.success {
+  background: #2d4a2b;
+  color: #90ee90;
+  border-color: #4a7a47;
+}
+

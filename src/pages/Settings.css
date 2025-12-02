@@ -66,6 +66,134 @@
   background: #fa5252;
 }
 
+/* Theme overrides for the dark gray theme */
+html.theme-switched .settings-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+html.theme-switched .settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+html.theme-switched .settings-card {
+  background: #353941;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  border: 1px solid #404854;
+  color: #e8e9eb;
+  transition: all 0.3s ease;
+}
+
+html.theme-switched .settings-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+html.theme-switched .settings-card h2 {
+  color: #e8e9eb;
+  margin: 0;
+}
+
+html.theme-switched .settings-card p {
+  color: #b0b3b8;
+}
+
+html.theme-switched .badge {
+  background: #404854;
+  color: #d0d2d7;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+html.theme-switched .badge-success {
+  background: #2d4a2b;
+  color: #90ee90;
+}
+
+html.theme-switched .settings-card .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+html.theme-switched .settings-card select {
+  background: #404854;
+  color: #e8e9eb;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #515966;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+html.theme-switched .settings-card select:focus {
+  outline: none;
+  border-color: #4ecdc4;
+  box-shadow: 0 0 0 3px rgba(78,205,196,0.15);
+}
+
+html.theme-switched .settings-card select option {
+  background: #353941;
+  color: #e8e9eb;
+}
+
+html.theme-switched .settings-card label {
+  color: #e8e9eb;
+  font-weight: 600;
+}
+
+html.theme-switched .settings-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+html.theme-switched .btn-outline {
+  color: #e8e9eb;
+  border-color: #404854;
+  background: transparent;
+}
+
+html.theme-switched .btn-outline:hover {
+  background: rgba(255,255,255,0.06);
+  color: #4ecdc4;
+  border-color: #4ecdc4;
+}
+
+html.theme-switched .btn-primary {
+  background: linear-gradient(90deg,#6c5ce7,#a29bfe);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(44,39,55,0.12);
+}
+
+html.theme-switched .btn-secondary {
+  background: #404854;
+  color: #e8e9eb;
+}
+
+html.theme-switched .btn-secondary:hover {
+  background: #515966;
+}
+
+html.theme-switched .btn-danger {
+  background: #ff6b6b;
+  color: #fff;
+}
+
+html.theme-switched .btn-danger:hover {
+  background: #fa5252;
+}
+
 @media (max-width: 768px) {
   .settings-page {
     padding: 15px;

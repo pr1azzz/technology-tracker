@@ -131,6 +131,7 @@
   border-radius: 8px;
   border: 1px solid #e9ecef;
 }
+}
 
 .stat-number {
   display: block;
@@ -294,6 +295,149 @@
   margin: 0 0 25px 0;
   color: #666;
   font-size: 1.1em;
+}
+
+/* ================================ */
+/* 🔥 DARK THEME (html.theme-switched) */
+/* ================================ */
+
+/* Page background */
+html.theme-switched .technology-list-page {
+  background: #2a2d33;
+  color: #e8e9eb;
+}
+
+/* Page Header */
+html.theme-switched .page-header {
+  background: linear-gradient(135deg, #1f2229 0%, #2a2d33 100%);
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+html.theme-switched .header-content h1 {
+  color: #e8e9eb;
+}
+
+html.theme-switched .header-content p {
+  color: #b0b3b8;
+}
+
+/* API URL Section */
+html.theme-switched .api-url-section {
+  background: #353941;
+  border-color: #404854;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+html.theme-switched .api-url-section h3 {
+  color: #e8e9eb;
+}
+
+html.theme-switched .input-group label {
+  color: #e8e9eb;
+}
+
+html.theme-switched .api-url-input {
+  background: #404854;
+  color: #e8e9eb;
+  border-color: #515966;
+}
+
+html.theme-switched .api-url-input:focus {
+  border-color: #4ecdc4;
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.15);
+}
+
+html.theme-switched .api-url-input::placeholder {
+  color: #999;
+}
+
+/* Stats Overview */
+html.theme-switched .stats-overview {
+  background: #353941;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+html.theme-switched .stat-item {
+  background: #404854;
+  border-color: #515966;
+}
+
+html.theme-switched .stat-label {
+  color: #b0b3b8;
+}
+
+/* Technology Cards */
+html.theme-switched .technologies-grid {
+  gap: 25px;
+}
+
+html.theme-switched .technology-card {
+  background: #353941;
+  border-color: #404854;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  color: #e8e9eb;
+}
+
+html.theme-switched .technology-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+html.theme-switched .card-header h3 {
+  color: #e8e9eb;
+}
+
+html.theme-switched .tech-description {
+  color: #b0b3b8;
+}
+
+html.theme-switched .tech-notes-preview {
+  background: #404854;
+  border-left-color: #4ecdc4;
+}
+
+html.theme-switched .tech-notes-preview strong {
+  color: #e8e9eb;
+}
+
+html.theme-switched .tech-notes-preview p {
+  color: #b0b3b8;
+}
+
+/* Status badges in dark theme */
+html.theme-switched .status-not-started {
+  background: rgba(255, 107, 107, 0.15);
+  color: #ff8a80;
+  border-color: #ff8a80;
+}
+
+html.theme-switched .status-in-progress {
+  background: rgba(78, 205, 196, 0.15);
+  color: #4dd0e1;
+  border-color: #4dd0e1;
+}
+
+html.theme-switched .status-completed {
+  background: rgba(144, 238, 144, 0.15);
+  color: #90ee90;
+  border-color: #90ee90;
+}
+
+/* Empty State */
+html.theme-switched .empty-state {
+  background: #353941;
+  border-color: #404854;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+html.theme-switched .empty-state h3 {
+  color: #e8e9eb;
+}
+
+html.theme-switched .empty-state p {
+  color: #b0b3b8;
 }
 
 /* 🔥 Адаптивность */

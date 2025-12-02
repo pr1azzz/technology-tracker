@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTechnologies } from '../hooks/useTechnologies.jsx';
+import { useNotification } from '../context/NotificationContext.jsx';
 import './AddTechnology.css';
 
 function AddTechnology() {
   const navigate = useNavigate();
   const { technologies, setTechnologies } = useTechnologies();
+  const { showNotification } = useNotification();
   
   const [formData, setFormData] = useState({
     title: '',
@@ -75,8 +77,8 @@ function AddTechnology() {
     setTechnologies(updatedTechnologies);
 
     // 🔥 Показываем уведомление и перенаправляем
-    alert('✅ Технология успешно добавлена!');
-    navigate('/technologies');
+    showNotification('✅ Технология успешно добавлена!', 'success', 2000);
+    setTimeout(() => navigate('/technologies'), 500);
   };
 
   // 🔥 Обработчик добавления технологии из поиска

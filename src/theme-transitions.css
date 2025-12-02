@@ -1,0 +1,85 @@
+/* Global theme transition styles */
+* {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Disable transition on page load */
+.no-transition,
+.no-transition *,
+.no-transition *:before,
+.no-transition *:after {
+  transition: none !important;
+}
+
+/* Modal backdrop */
+.MuiBackdrop-root {
+  backdrop-filter: blur(3px);
+}
+
+/* Ensure all Paper components inherit theme */
+.MuiPaper-root,
+.MuiDialog-paper,
+.MuiModal-root,
+.MuiCard-root,
+.MuiAppBar-root {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Form elements */
+.MuiInputBase-root,
+.MuiOutlinedInput-root,
+.MuiFilledInput-root,
+.MuiInput-root {
+  transition: background-color 0.2s,
+              border-color 0.2s,
+              color 0.2s;
+}
+
+/* Buttons */
+.MuiButton-root,
+.MuiIconButton-root,
+.MuiButtonBase-root {
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Snackbar */
+.MuiSnackbar-root {
+  transition: opacity 0.3s;
+}
+
+/* Alert */
+.MuiAlert-root {
+  transition: background-color 0.3s,
+              color 0.3s;
+}
+
+/* Menu */
+.MuiMenu-paper,
+.MuiPopover-paper {
+  box-shadow: 0 5px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mui-palette-divider, rgba(0, 0, 0, 0.12));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mui-palette-action-hover, rgba(0, 0, 0, 0.16));
+}

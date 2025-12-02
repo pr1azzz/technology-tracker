@@ -12,11 +12,11 @@
   justify-content: space-between;
   align-items: center;
   gap: 15px;
-  background: #fff5cc;
-  border: 1px solid #ffe08a;
+  background: rgba(255, 224, 138, 0.1);
+  border: 1px solid rgba(255, 224, 138, 0.3);
   border-radius: 12px;
   padding: 18px 24px;
-  color: #8a6d3b;
+  color: #f9a825;
   margin-bottom: 20px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
@@ -28,7 +28,7 @@
 }
 
 .reload-notice strong {
-  color: #6f4f1f;
+  color: #ffb300;
 }
 
 .App-header {
@@ -210,6 +210,7 @@
   color: white;
   border-radius: 15px;
   margin-bottom: 40px;
+  transition: background 0.3s;
 }
 
 .hero-section h1 {
@@ -221,6 +222,11 @@
   font-size: 1.2em;
   opacity: 0.9;
   margin-bottom: 30px;
+}
+
+html.theme-switched .hero-section p {
+  color: #ffffff;
+  opacity: 0.95;
 }
 
 .hero-stats {
@@ -240,6 +246,13 @@
   box-shadow: 0 20px 35px rgba(20, 20, 50, 0.15);
 }
 
+html.theme-switched .stat-card {
+  background: #353941;
+  color: #e8e9eb;
+  border: 1px solid #404854;
+  box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+}
+
 .stat-card h3 {
   margin: 0 0 10px 0;
   font-size: 1.3em;
@@ -247,10 +260,19 @@
   letter-spacing: 0.02em;
 }
 
+html.theme-switched .stat-card h3 {
+  color: #e8e9eb;
+}
+
 .stat-card p {
   margin: 0;
   color: #3d3d5c;
   font-size: 1em;
+  opacity: 0.95;
+}
+
+html.theme-switched .stat-card p {
+  color: #b0b3b8;
   opacity: 0.95;
 }
 
@@ -318,6 +340,7 @@
   color: white;
   border-radius: 15px;
   margin-bottom: 40px;
+  transition: background 0.3s;
 }
 
 .page-header h1 {
@@ -329,6 +352,11 @@
   font-size: 1.1em;
   opacity: 0.9;
   margin: 0;
+}
+
+html.theme-switched .page-header p {
+  color: #ffffff;
+  opacity: 0.95;
 }
 
 .content-placeholder {

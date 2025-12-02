@@ -10,17 +10,17 @@
   color: #6c757d;
 }
 
+html.theme-switched .breadcrumbs {
+  color: #b0b3b8 !important;
+}
+
 .breadcrumbs a {
   color: #4ecdc4;
   text-decoration: none;
 }
 
-.breadcrumbs a:hover {
-  text-decoration: underline;
-}
-
-.breadcrumbs span {
-  margin: 0 8px;
+html.theme-switched .breadcrumbs a {
+  color: #4dd0e1 !important;
 }
 
 .add-technology-form {
@@ -28,6 +28,16 @@
   border-radius: 16px;
   padding: 32px;
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Force gray background on theme-switched */
+html.theme-switched .add-technology-form {
+  background: #353941 !important;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3) !important;
+  color: #e8e9eb !important;
 }
 
 .search-section,
@@ -46,10 +56,16 @@
   margin-bottom: 16px;
 }
 
-.section-divider {
-  margin: 32px 0;
-  border: none;
-  border-top: 2px solid #e9ecef;
+html.theme-switched .search-section,
+html.theme-switched .importer-section {
+  background: #404854;
+  border-left-color: #4ecdc4;
+  color: #e8e9eb;
+}
+
+html.theme-switched .search-section h2,
+html.theme-switched .importer-section h2 {
+  color: #e8e9eb;
 }
 
 .form-header h1 {
@@ -61,6 +77,14 @@
 .form-header p {
   margin: 0 0 24px;
   color: #6c757d;
+}
+
+html.theme-switched .form-header h1 {
+  color: #e8e9eb;
+}
+
+html.theme-switched .form-header p {
+  color: #b0b3b8;
 }
 
 .technology-form {
@@ -78,6 +102,11 @@
 .form-label {
   font-weight: 600;
   color: #343a40;
+}
+
+html.theme-switched .form-label {
+  color: #e8e9eb;
+  font-weight: 600;
 }
 
 .form-input,
@@ -142,6 +171,105 @@
   border-color: #4ecdc4;
   color: #4ecdc4;
   transform: translateY(-2px);
+}
+
+/* Force gray background on theme-switched */
+html.theme-switched .add-technology-form {
+  background: #353941 !important;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3) !important;
+  color: #e8e9eb !important;
+}
+
+html.theme-switched .add-technology-form h1,
+html.theme-switched .add-technology-form h2 {
+  color: #e8e9eb;
+}
+
+html.theme-switched .add-technology-form p {
+  color: #b0b3b8;
+}
+
+html.theme-switched .search-section,
+html.theme-switched .importer-section {
+  background: #404854;
+  border-left-color: #4ecdc4;
+  color: #e8e9eb;
+}
+
+html.theme-switched .search-section h2,
+html.theme-switched .importer-section h2 {
+  color: #e8e9eb;
+}
+
+html.theme-switched .form-header h1 {
+  color: #e8e9eb;
+}
+
+html.theme-switched .form-header p {
+  color: #b0b3b8;
+}
+
+html.theme-switched .form-label {
+  color: #e8e9eb;
+  font-weight: 600;
+}
+
+html.theme-switched .form-input,
+html.theme-switched .form-textarea,
+html.theme-switched .form-select {
+  background: #404854 !important;
+  color: #e8e9eb !important;
+  border: 2px solid #515966 !important;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+html.theme-switched .form-input:focus,
+html.theme-switched .form-textarea:focus,
+html.theme-switched .form-select:focus {
+  outline: none;
+  border-color: #4ecdc4;
+  box-shadow: 0 0 0 3px rgba(78,205,196,0.15);
+}
+
+html.theme-switched .form-input::placeholder,
+html.theme-switched .form-textarea::placeholder {
+  color: #999 !important;
+  opacity: 0.85;
+}
+
+html.theme-switched .form-select option {
+  background: #353941;
+  color: #e8e9eb;
+}
+
+html.theme-switched .form-hint {
+  color: #b0b3b8;
+}
+
+html.theme-switched .form-input.error,
+html.theme-switched .form-textarea.error {
+  border-color: #ff8a80 !important;
+  background: #4a2c2c;
+}
+
+html.theme-switched .error-message {
+  color: #ff8a80;
+}
+
+html.theme-switched .btn-outline {
+  color: #e8e9eb;
+  border-color: #404854;
+  background: transparent;
+}
+
+html.theme-switched .btn-outline:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: #4ecdc4;
+  color: #4ecdc4;
 }
 
 @media (max-width: 768px) {

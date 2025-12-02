@@ -1,3 +1,4 @@
+import React from 'react';
 import './Modal.css';
 
 function Modal({ isOpen, onClose, title, children, size = 'medium', closeOnOverlayClick = true }) {

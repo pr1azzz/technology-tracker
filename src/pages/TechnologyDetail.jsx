@@ -1,12 +1,14 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTechnologies } from '../hooks/useTechnologies.jsx';
+import { useNotification } from '../context/NotificationContext.jsx';
 import StudyDeadlineForm from '../components/StudyDeadlineForm.jsx';
 import './TechnologyDetail.css';
 
 function TechnologyDetail() {
   const { id } = useParams();
   const { technologies, updateTechnologyStatus, updateTechnologyNotes, setTechnologies } = useTechnologies();
+  const { showNotification } = useNotification();
   const [technology, setTechnology] = useState(null);
   const [resourceState, setResourceState] = useState({
     loading: false,
@@ -56,6 +58,8 @@ function TechnologyDetail() {
     if (!technology) return;
     updateTechnologyStatus(technology.id, newStatus);
     setTechnology(prev => prev ? { ...prev, status: newStatus } : prev);
+    const statusMap = { 'not-started': 'Не начато', 'in-progress': 'В процессе', 'completed': 'Завершено' };
+    showNotification(`✅ Статус изменён: ${statusMap[newStatus]}`, 'success', 2000);
   };
 
   // 🔥 Функция изменения заметок
@@ -63,6 +67,9 @@ function TechnologyDetail() {
     if (!technology) return;
     updateTechnologyNotes(technology.id, newNotes);
     setTechnology(prev => prev ? { ...prev, notes: newNotes } : prev);
+    if (newNotes && newNotes.length > 0) {
+      showNotification('✨ Заметки сохранены', 'success', 2000);
+    }
   };
 
   // 🔥 Установка срока изучения
@@ -70,6 +77,7 @@ function TechnologyDetail() {
     if (!technology) return;
     setTechnologies(prev => prev.map(t => t.id === technology.id ? { ...t, deadline: date } : t));
     setTechnology(prev => prev ? { ...prev, deadline: date } : prev);
+    showNotification('📅 Срок изучения установлен', 'success', 2000);
   };
 
   // 🔥 Текст статуса на русском

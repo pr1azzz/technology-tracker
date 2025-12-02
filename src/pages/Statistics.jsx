@@ -12,19 +12,19 @@ function Statistics() {
       key: 'completed',
       label: '✅ Завершено',
       value: stats.completed,
-      color: '#51cf66'
+      color: '#66bb6a'
     },
     {
       key: 'in-progress',
       label: '🔄 В процессе',
       value: stats.inProgress,
-      color: '#4ecdc4'
+      color: '#4dd0e1'
     },
     {
       key: 'not-started',
       label: '⏳ Не начато',
       value: stats.notStarted,
-      color: '#ff6b6b'
+      color: '#ef5350'
     }
   ]), [stats.completed, stats.inProgress, stats.notStarted]);
 

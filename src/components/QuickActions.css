@@ -84,3 +84,35 @@
     font-size: 0.85em;
   }
 }
+
+/* Theme overrides for dark theme */
+html.theme-switched .quick-actions {
+  background: #353941;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+  border: 1px solid #404854;
+  color: #e8e9eb;
+}
+
+html.theme-switched .quick-actions h3 {
+  color: #e8e9eb;
+}
+
+html.theme-switched .action-btn {
+  color: #e8e9eb;
+}
+
+/* Keep vibrant gradients for action buttons but ensure contrast on dark */
+html.theme-switched .action-btn.completed,
+html.theme-switched .action-btn.reset,
+html.theme-switched .action-btn.random,
+html.theme-switched .action-btn.export,
+html.theme-switched .action-btn.danger {
+  color: #fff;
+}
+
+html.theme-switched .action-btn:hover:not(:disabled) {
+  box-shadow: 0 8px 22px rgba(44,39,55,0.12);
+}

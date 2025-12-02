@@ -55,3 +55,42 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Theme overrides for the dark gray theme */
+html.theme-switched .user-profile {
+  background: #353941;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+  border-left: 4px solid rgba(78,205,196,0.3);
+  color: #e8e9eb;
+}
+
+html.theme-switched .user-profile h2 {
+  color: #e8e9eb;
+}
+
+html.theme-switched .api-status {
+  background: #2d4a2b;
+  color: #90ee90;
+  border: 1px solid #4a7a47;
+}
+
+html.theme-switched .user-info p {
+  color: #d0d2d7;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+html.theme-switched .user-info strong {
+  color: #e8e9eb;
+}
+
+html.theme-switched .loading {
+  color: #b0b3b8;
+}
+
+html.theme-switched .loading-spinner {
+  border: 3px solid #515966;
+  border-top: 3px solid #4ecdc4;
+}

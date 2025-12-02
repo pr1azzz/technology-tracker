@@ -91,3 +91,51 @@
   transform: none;
 }
 
+/* Theme overrides for dark theme */
+html.theme-switched .tech-search {
+  background: #353941;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  border: 1px solid #404854;
+  color: #e8e9eb;
+}
+
+html.theme-switched .tech-search label,
+html.theme-switched .tech-search p {
+  color: #e8e9eb;
+}
+
+html.theme-switched .tech-search input {
+  background: #404854;
+  color: #e8e9eb;
+  border: 2px solid #515966;
+}
+
+html.theme-switched .tech-search input:focus {
+  border-color: #4ecdc4;
+}
+
+html.theme-switched .tech-search-status {
+  color: #b0b3b8;
+}
+
+html.theme-switched .tech-search-results li {
+  border: 1px solid rgba(255,255,255,0.04);
+  background: #404854;
+  color: #e8e9eb;
+}
+
+html.theme-switched .tech-search-results li p {
+  color: #b0b3b8;
+}
+
+html.theme-switched .tech-search-results button {
+  background: linear-gradient(90deg,#6c5ce7,#a29bfe);
+  color: #fff;
+}
+
+html.theme-switched .tech-search-results button:hover:not(:disabled) {
+  box-shadow: 0 6px 18px rgba(44,39,55,0.12);
+}
+
